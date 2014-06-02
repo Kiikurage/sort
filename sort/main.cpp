@@ -42,15 +42,18 @@ int main(int argc, const char *argv[])
 	
 	requireCount = fileSize / 100 * atoi(argv[1]) / LINE_LENGTH;
 
-	firstRecord = (record **)calloc(100, sizeof(record *));
-	lastRecord = (record **)calloc(100, sizeof(record *));
-	count = (int *)calloc(100, sizeof(int));
+	firstRecord = (record **)calloc(10000, sizeof(record *));
+	lastRecord = (record **)calloc(10000, sizeof(record *));
+	count = (int *)calloc(10000, sizeof(int));
 		
 	//最上位の桁で基数ソート
 	int value;
 	for (int i = 0; i < fileSize; i += LINE_LENGTH)
 	{
-		value = (addr[i] - CHARCODE_ZERO)*10 + (addr[i+1] - CHARCODE_ZERO);
+		value = (addr[i] - CHARCODE_ZERO)*1000 +
+		(addr[i+1] - CHARCODE_ZERO)*100 +
+		(addr[i+2] - CHARCODE_ZERO)*10 +
+		(addr[i+3] - CHARCODE_ZERO);
 
 		record* r = (record *)malloc(sizeof(record));
 		r->ptr = addr + i;
@@ -73,7 +76,7 @@ int main(int argc, const char *argv[])
 	firstRecord[0] = NULL;
 	lastRecord[0]->next = NULL;
 
-	for (int i = 1; i < 100; i++)
+	for (int i = 1; i < 10000; i++)
 	{
 		if (firstRecord[i] == NULL) continue;
 
@@ -86,18 +89,18 @@ int main(int argc, const char *argv[])
 		lastRecord[i]->next = NULL;
 	}
 	
-	for (int digit = 2; digit < DIGIT_NUMBER; digit+=2)
-	{
-		int oldRecordCount = recordCount;
-		bin = sort(bin, digit, true);
+//	for (int digit = 4; digit < DIGIT_NUMBER; digit+=4)
+//	{
+//		int oldRecordCount = recordCount;
+//		bin = sort(bin, digit, true);
+//
+//		if (oldRecordCount == recordCount)
+//		{
+//			break;
+//		}
+//	}
 
-		if (oldRecordCount == recordCount)
-		{
-			break;
-		}
-	}
-
-	for (int digit = DIGIT_NUMBER-2; digit >= 0; digit-=2)
+	for (int digit = DIGIT_NUMBER-6; digit >= 0; digit-=4)
 	{
 		bin = sort(bin, digit, false);
 	}
@@ -124,6 +127,7 @@ int main(int argc, const char *argv[])
 	printf("\nfinish!\n");
 	printf("time             : %ld(ms)\n", t_end);
 	printf("time(with print) : %ld(ms)\n", t_end_with_print);
+
 	free(firstRecord);
 	free(lastRecord);
 	free(count);
@@ -138,7 +142,10 @@ record *sort(record* bin, int digit, bool flagCutoff)
 
 	while (cursor != NULL)
 	{
-		value = (cursor->ptr[digit] - CHARCODE_ZERO)*10 + (cursor->ptr[digit+1] - CHARCODE_ZERO);
+		value = (cursor->ptr[digit] - CHARCODE_ZERO)*1000
+		+ (cursor->ptr[digit+1] - CHARCODE_ZERO)*100
+		+ (cursor->ptr[digit+2] - CHARCODE_ZERO)*10
+		+ (cursor->ptr[digit+3] - CHARCODE_ZERO);
 		
 		if (firstRecord[value] == NULL) {
 			firstRecord[value] = cursor;
@@ -163,7 +170,7 @@ record *sort(record* bin, int digit, bool flagCutoff)
 
 	if (flagCutoff)
 	{
-		for (int i = 1; i < 100; i++)
+		for (int i = 1; i < 10000; i++)
 		{
 			if (firstRecord[i] == NULL) continue;
 
@@ -179,7 +186,7 @@ record *sort(record* bin, int digit, bool flagCutoff)
 	}
 	else
 	{
-		for (int i = 1; i < 100; i++)
+		for (int i = 1; i < 10000; i++)
 		{
 			if (firstRecord[i] == NULL) continue;
 			
