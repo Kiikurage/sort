@@ -26,7 +26,6 @@ typedef struct _record {
 	_record *next;
 } record;
 
-record *sort(record* bin, int digit, bool isCutoff);
 record **firstRecord, **lastRecord;
 int *count, recordCount, requireCount;
 
@@ -34,6 +33,7 @@ int main(int argc, const char *argv[])
 {
 	int fileSize, pageSize, mmapSize;
 	char *addr;
+	record *bin, *cursor;
 		
 	fileSize = (int)lseek(0, 0, SEEK_END);
 	pageSize = getpagesize();
@@ -68,7 +68,7 @@ int main(int argc, const char *argv[])
 	}
 
 	//リストの連結
-	record* bin = firstRecord[0];
+	bin = firstRecord[0];
 	recordCount = count[0];
 	firstRecord[0] = NULL;
 	lastRecord[0]->next = NULL;
@@ -89,7 +89,47 @@ int main(int argc, const char *argv[])
 	for (int digit = 2; digit < DIGIT_NUMBER; digit+=2)
 	{
 		int oldRecordCount = recordCount;
-		bin = sort(bin, digit, true);
+
+		cursor = bin;
+		
+		while (cursor != NULL)
+		{
+			value = (cursor->ptr[digit] - CHARCODE_ZERO)*10 + (cursor->ptr[digit+1] - CHARCODE_ZERO);
+			
+			if (firstRecord[value] == NULL) {
+				firstRecord[value] = cursor;
+			}
+			else
+			{
+				lastRecord[value]->next = cursor;
+			}
+			
+			lastRecord[value] = cursor;
+			count[value]++;
+			
+			cursor = cursor->next;
+		}
+		
+		//リストの連結
+		bin = firstRecord[0];
+		recordCount = count[0];
+		count[0] = 0;
+		firstRecord[0] = NULL;
+		lastRecord[0]->next = NULL;
+		
+		for (int i = 1; i < 100; i++)
+		{
+			if (firstRecord[i] == NULL) continue;
+			
+			if (recordCount < requireCount) {
+				lastRecord[i-1]->next = firstRecord[i];
+				recordCount += count[i];
+			}
+			
+			count[i] = 0;
+			firstRecord[i] = NULL;
+			lastRecord[i]->next = NULL;
+		}
 
 		if (oldRecordCount == recordCount)
 		{
@@ -99,10 +139,47 @@ int main(int argc, const char *argv[])
 
 	for (int digit = DIGIT_NUMBER-2; digit >= 0; digit-=2)
 	{
-		bin = sort(bin, digit, false);
+		cursor = bin;
+		
+		while (cursor != NULL)
+		{
+			value = (cursor->ptr[digit] - CHARCODE_ZERO)*10 + (cursor->ptr[digit+1] - CHARCODE_ZERO);
+			
+			if (firstRecord[value] == NULL) {
+				firstRecord[value] = cursor;
+			}
+			else
+			{
+				lastRecord[value]->next = cursor;
+			}
+			
+			lastRecord[value] = cursor;
+			count[value]++;
+			
+			cursor = cursor->next;
+		}
+		
+		//リストの連結
+		bin = firstRecord[0];
+		recordCount = count[0];
+		count[0] = 0;
+		firstRecord[0] = NULL;
+		lastRecord[0]->next = NULL;
+		
+		for (int i = 1; i < 100; i++)
+		{
+			if (firstRecord[i] == NULL) continue;
+			
+			lastRecord[i-1]->next = firstRecord[i];
+			recordCount += count[i];
+			
+			count[i] = 0;
+			firstRecord[i] = NULL;
+			lastRecord[i]->next = NULL;
+		}
 	}
 	
-	record* cursor = bin;
+	cursor = bin;
 	long t_end = clock()*1000/CLOCKS_PER_SEC;
 	
 //	for (int i = 0; i < requireCount; i++) {
