@@ -1,0 +1,18 @@
+Tsort
+v6
+r1
+cCheck dependencies
+
+CBuild AST from /Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp
+r0
+
+CCheck dependencies
+r0
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies9e988160753cb941^8e1f8260753cb941^-135"warning: no rule to process file '/Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp' of type sourcecode.c for architecture x86_641(21%IDEActivityLogMessage2@134"Warning: no rule to process file '/Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp' of type sourcecode.c for architecture x86_64-423392608#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--0#1#1#--18"Check dependencies36"5D594C66-62CA-4CFE-8485-056CB8B2CB3B-
+
+CCompileC build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o /Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+r0
+
+CLd /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug/sort normal x86_64
+r0
+

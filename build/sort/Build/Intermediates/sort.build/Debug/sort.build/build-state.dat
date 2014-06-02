@@ -1,0 +1,309 @@
+Tsort
+v6
+r1
+cCheck dependencies
+cCompileC build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o /Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug/sort normal x86_64
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
+c00000000537CDE5000000000000000AA
+t1400692304
+s170
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/SDKSettings.plist
+c0000000052719AA5000000000000044C
+t1383176869
+s1100
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/CoreServices/SystemVersion.plist
+c00000000531F6CAF00000000000001DE
+t1394568367
+s478
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libSystem.dylib
+c00000000531F6CB1000000000000681C
+t1394568369
+s26652
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libc++.dylib
+c0000000052719AAB000000000006E8B0
+t1383176875
+s452784
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcache.dylib
+c0000000052719AAB0000000000004734
+t1383176875
+s18228
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcommonCrypto.dylib
+c0000000052719AAB000000000000FC6C
+t1383176875
+s64620
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcompiler_rt.dylib
+c0000000052719AAB000000000000F6A0
+t1383176875
+s63136
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcopyfile.dylib
+c0000000052719AAB0000000000006254
+t1383176875
+s25172
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcorecrypto.dylib
+c0000000052719AAB000000000000E0F8
+t1383176875
+s57592
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libdispatch.dylib
+c00000000531F6CB1000000000000D6DC
+t1394568369
+s55004
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libdyld.dylib
+c00000000531F6CB10000000000006308
+t1394568369
+s25352
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libkeymgr.dylib
+c0000000052719AAB0000000000004050
+t1383176875
+s16464
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/liblaunch.dylib
+c00000000531F6CB10000000000008570
+t1394568369
+s34160
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libmacho.dylib
+c0000000052719AAB0000000000005EA0
+t1383176875
+s24224
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libquarantine.dylib
+c0000000052719AAB0000000000005FAC
+t1383176875
+s24492
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libremovefile.dylib
+c0000000052719AAB0000000000004440
+t1383176875
+s17472
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_asl.dylib
+c0000000052719AAB000000000000AA28
+t1383176875
+s43560
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_blocks.dylib
+c0000000052719AAB0000000000003E2C
+t1383176875
+s15916
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_c.dylib
+c00000000531F6CB10000000000030B04
+t1394568369
+s199428
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_configuration.dylib
+c00000000531F6CB10000000000005E54
+t1394568369
+s24148
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_dnssd.dylib
+c00000000531F6CB10000000000006A90
+t1394568369
+s27280
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_info.dylib
+c0000000052719AAB00000000000178AC
+t1383176875
+s96428
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_kernel.dylib
+c00000000531F6CB1000000000001ADC8
+t1394568369
+s110024
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_m.dylib
+c0000000052719AAB000000000001028C
+t1383176875
+s66188
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_malloc.dylib
+c00000000531F6CB10000000000008800
+t1394568369
+s34816
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_network.dylib
+c0000000052719AAB0000000000011090
+t1383176875
+s69776
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_notify.dylib
+c0000000052719AAB000000000000882C
+t1383176875
+s34860
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_platform.dylib
+c00000000531F6CB100000000000067AC
+t1394568369
+s26540
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_pthread.dylib
+c0000000052719AAB0000000000008DEC
+t1383176875
+s36332
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_sandbox.dylib
+c00000000531F6CB10000000000004C08
+t1394568369
+s19464
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_stats.dylib
+c00000000531F6CB10000000000002428
+t1394568369
+s9256
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunc.dylib
+c0000000052719AAB000000000000439C
+t1383176875
+s17308
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunwind.dylib
+c0000000052719AAB0000000000006768
+t1383176875
+s26472
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libxpc.dylib
+c00000000531F6CB100000000000172F4
+t1394568369
+s94964
+
+N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/include/module.map
+c00000000531F6CB10000000000000ADC
+t1394568369
+s2780
+
+N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.osx.a
+c00000000537CDE3A0000000000001770
+t1400692282
+s6000
+
+N/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o
+t1401723115
+s7908
+
+N/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/sort.LinkFileList
+c00000000538C3E3F0000000000000081
+t1401699903
+s129
+
+N/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug/sort
+t1401723103
+s9656
+
+N/Users/Yuichiro/workspace/Algorithm/sort/sort/main.c
+c00000000538C3E870000000000000CB7
+t1401699975
+s3255
+
+N/Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp
+c00000000538C98EA0000000000000F58
+t1401723114
+s3928
+
+CBuild AST from /Users/Yuichiro/workspace/Algorithm/sort/sort/main.c
+r0
+
+CBuild AST from /Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp
+r0
+
+CCheck dependencies
+r0
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesed80576bd03cb941^d00a586bd03cb941^---0#1#1#--18"Check dependencies36"04A86EA0-53C1-4F0F-9F1C-647B944A1DAB-
+
+CCompileC build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o /Users/Yuichiro/workspace/Algorithm/sort/sort/main.c normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s423392778.128306
+e423392778.169855
+r0
+xCompileC
+xbuild/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o
+x/Users/Yuichiro/workspace/Algorithm/sort/sort/main.c
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Yuichiro/workspace/Algorithm/sort/sort/main.c
+o/Users/Yuichiro/workspace/Algorithm/sort/sort/main.c:35:15: error: use of undeclared identifier 'time'
+o        long start = time();
+o                     ^
+o1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection60"Compile /Users/Yuichiro/workspace/Algorithm/sort/sort/main.c170"CompileC build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o sort/main.c normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compilerdbf7200a763cb941^a27a2b0a763cb941^-174"/Users/Yuichiro/workspace/Algorithm/sort/sort/main.c:35:15: error: use of undeclared identifier 'time'        long start = time();                     ^1 error generated.1(36%IDEClangDiagnosticActivityLogMessage2@35"Use of undeclared identifier 'time'-423392778#18446744073709551615#0#-2#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@59"file:///Users/Yuichiro/workspace/Algorithm/sort/sort/main.c0000000000000000^34#14#34#14#663#0#14"Semantic Issue--0#0#1#-19%DVTDocumentLocation4@59"file:///Users/Yuichiro/workspace/Algorithm/sort/sort/main.c0000000000000000^2986"CompileC build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o sort/main.c normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Yuichiro/workspace/Algorithm/sort    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu++11 -stdlib=libc++ -fmodules -fmodules-cache-path=/Users/Yuichiro/workspace/Algorithm/sort/build/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/sort-generated-files.hmap -I/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/sort-own-target-headers.hmap -I/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/sort-all-target-headers.hmap -iquote /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/sort-project-headers.hmap -I/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/DerivedSources/x86_64 -I/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/DerivedSources -F/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug -MMD -MT dependencies -MF /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.dia -c /Users/Yuichiro/workspace/Algorithm/sort/sort/main.c -o /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o36"31C95F19-0A69-4153-957C-7D0FE04CFECF-
+b14BC7413-0F53-4B93-9D15-2995B525CE6A
+
+CCompileC build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o /Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s423415915.343609
+e423415915.399446
+r1
+xCompileC
+xbuild/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o
+x/Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp
+o/Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp:105:10: warning: unused variable 'cursor' [-Wunused-variable]
+o        record* cursor = bin;
+o                ^
+o1 warning generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection62"Compile /Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp172"CompileC build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o sort/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compilere411586bd03cb941^533c666bd03cb941^-186"/Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp:105:10: warning: unused variable 'cursor' [-Wunused-variable]        record* cursor = bin;                ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@24"Unused variable 'cursor'-423415915#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@61"file:///Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp0000000000000000^104#9#104#9#2236#0#19"Unused Entity Issue--0#0#1#-19%DVTDocumentLocation4@61"file:///Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp0000000000000000^2990"CompileC build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o sort/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Yuichiro/workspace/Algorithm/sort    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu++11 -stdlib=libc++ -fmodules -fmodules-cache-path=/Users/Yuichiro/workspace/Algorithm/sort/build/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/sort-generated-files.hmap -I/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/sort-own-target-headers.hmap -I/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/sort-all-target-headers.hmap -iquote /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/sort-project-headers.hmap -I/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/DerivedSources/x86_64 -I/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/DerivedSources -F/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug -MMD -MT dependencies -MF /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.dia -c /Users/Yuichiro/workspace/Algorithm/sort/sort/main.cpp -o /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o36"0C9F0FFB-CDB2-475A-9072-A5E2C294DCCB-
+bF3E0B62D-6734-4773-AE8D-31BE7AD5188F
+
+CLd /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug/sort normal x86_64
+s423415915.400881
+e423415915.421858
+r1
+xLd
+x/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug/sort
+xnormal
+xx86_64
+d/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/sort.LinkFileList
+d/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/main.o
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libc++.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libSystem.dylib
+d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.osx.a
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcache.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcommonCrypto.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcompiler_rt.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcopyfile.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcorecrypto.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libdispatch.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libdyld.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libkeymgr.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/liblaunch.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libmacho.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libquarantine.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libremovefile.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_asl.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_blocks.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_c.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_configuration.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_dnssd.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_info.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_kernel.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_m.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_malloc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_network.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_notify.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_platform.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_pthread.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_sandbox.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_stats.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunwind.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libxpc.dylib
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection82"Link /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug/sort53"Ld build/sort/Build/Products/Debug/sort normal x86_64a3ad666bd03cb941^7aff6b6bd03cb941^---0#0#1#--968"Ld build/sort/Build/Products/Debug/sort normal x86_64    cd /Users/Yuichiro/workspace/Algorithm/sort    export MACOSX_DEPLOYMENT_TARGET=10.9    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug -F/Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug -filelist /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/sort.LinkFileList -mmacosx-version-min=10.9 -stdlib=libc++ -Xlinker -dependency_info -Xlinker /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Intermediates/sort.build/Debug/sort.build/Objects-normal/x86_64/sort_dependency_info.dat -o /Users/Yuichiro/workspace/Algorithm/sort/build/sort/Build/Products/Debug/sort36"54B07738-7822-4491-AC25-C492EE1A0661-
+bF3E0B62D-6734-4773-AE8D-31BE7AD5188F
+
