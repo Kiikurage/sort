@@ -18,23 +18,27 @@
 #define LINE_LENGTH          (DIGIT_NUMBER+NEWLINECODE_SIZE)
 #define CHARCODE_ZERO        48
 #define CHARCODE_NEWLINE     10
-
-
+#define UNIT_DIGIT_SIZE      4
+#define MEMORY_ALLOCATE_SIZE 10000
 
 typedef struct _record {
-	char *ptr;
 	_record *next;
+	char *ptr;
 } record;
 
-record *sort(record* bin, int digit, bool isCutoff);
+record *sort(int digit);
+record *connect();
+void print();
+
 record **firstRecord, **lastRecord;
+record *bin;
 int *count, recordCount, requireCount;
 
 int main(int argc, const char *argv[])
 {
 	int fileSize, pageSize, mmapSize;
 	char *addr;
-		
+
 	fileSize = (int)lseek(0, 0, SEEK_END);
 	pageSize = getpagesize();
 	mmapSize = (fileSize + (pageSize - 1)) / pageSize * pageSize;
@@ -42,91 +46,47 @@ int main(int argc, const char *argv[])
 	
 	requireCount = fileSize / 100 * atoi(argv[1]) / LINE_LENGTH;
 
-	firstRecord = (record **)calloc(10000, sizeof(record *));
-	lastRecord = (record **)calloc(10000, sizeof(record *));
-	count = (int *)calloc(10000, sizeof(int));
-		
+	firstRecord = (record **)malloc(MEMORY_ALLOCATE_SIZE * sizeof(record *));
+	lastRecord = (record **)malloc(MEMORY_ALLOCATE_SIZE * sizeof(record *));
+	count = (int *)calloc(MEMORY_ALLOCATE_SIZE, sizeof(int));
+	
+	
+	for (int i = 0; i < MEMORY_ALLOCATE_SIZE; i++)
+	{
+		firstRecord[i] = (record *)calloc(1, sizeof(record));
+		lastRecord[i] = firstRecord[i];
+	}
+	
 	//最上位の桁で基数ソート
 	int value;
 	for (int i = 0; i < fileSize; i += LINE_LENGTH)
 	{
-		value = (addr[i] - CHARCODE_ZERO)*1000 +
-		(addr[i+1] - CHARCODE_ZERO)*100 +
-		(addr[i+2] - CHARCODE_ZERO)*10 +
-		(addr[i+3] - CHARCODE_ZERO);
+		value = 0;
+		for (int j = 0; j < UNIT_DIGIT_SIZE; j++) {
+			value *= 10;
+			value += (addr[i+j] - CHARCODE_ZERO);
+		}
 
 		record* r = (record *)malloc(sizeof(record));
 		r->ptr = addr + i;
 		
-		if (firstRecord[value] == NULL) {
-			firstRecord[value] = r;
-		}
-		else
-		{
-			lastRecord[value]->next = r;
-		}
-
+		lastRecord[value]->next = r;
 		lastRecord[value] = r;
 		count[value]++;
 	}
-
-	//リストの連結
-	record* bin = firstRecord[0];
-	recordCount = count[0];
-	firstRecord[0] = NULL;
-	lastRecord[0]->next = NULL;
-
-	for (int i = 1; i < 10000; i++)
-	{
-		if (firstRecord[i] == NULL) continue;
-
-		if (recordCount < requireCount) {
-			recordCount += count[i];
-			lastRecord[i-1]->next = firstRecord[i];
-		}
-		
-		firstRecord[i] = NULL;
-		lastRecord[i]->next = NULL;
-	}
 	
-//	for (int digit = 4; digit < DIGIT_NUMBER; digit+=4)
-//	{
-//		int oldRecordCount = recordCount;
-//		bin = sort(bin, digit, true);
-//
-//		if (oldRecordCount == recordCount)
-//		{
-//			break;
-//		}
-//	}
-
-	for (int digit = DIGIT_NUMBER-6; digit >= 0; digit-=4)
-	{
-		bin = sort(bin, digit, false);
-	}
+	bin = connect();
 	
-	record* cursor = bin;
+	//下から順に基数ソート
+	for (int digit = DIGIT_NUMBER - UNIT_DIGIT_SIZE; digit >= 0; digit -= UNIT_DIGIT_SIZE)
+		bin = sort(digit);
+	
 	long t_end = clock()*1000/CLOCKS_PER_SEC;
 	
-//	for (int i = 0; i < requireCount; i++) {
-//
-//		char *ptr = cursor->ptr;
-//
-//		while (ptr[0] != CHARCODE_NEWLINE) {
-//			printf("%c", ptr[0]);
-//			ptr++;
-//		}
-//		
-//		printf("\n");
-//		cursor = cursor->next;
-//		if (cursor == NULL) break;
-//	}
+//	print();
 	
-	long t_end_with_print = clock()*1000/CLOCKS_PER_SEC;
-
 	printf("\nfinish!\n");
 	printf("time             : %ld(ms)\n", t_end);
-	printf("time(with print) : %ld(ms)\n", t_end_with_print);
 
 	free(firstRecord);
 	free(lastRecord);
@@ -135,69 +95,63 @@ int main(int argc, const char *argv[])
 	return 0;
 }
 
-record *sort(record* bin, int digit, bool flagCutoff)
+record *sort(int digit)
 {
 	record* cursor = bin;
 	int value;
-
+	
 	while (cursor != NULL)
 	{
-		value = (cursor->ptr[digit] - CHARCODE_ZERO)*1000
-		+ (cursor->ptr[digit+1] - CHARCODE_ZERO)*100
-		+ (cursor->ptr[digit+2] - CHARCODE_ZERO)*10
-		+ (cursor->ptr[digit+3] - CHARCODE_ZERO);
+		value = 0;
+		for (int j = 0; j < UNIT_DIGIT_SIZE; j++) {
+			value *= 10;
+			value += (cursor->ptr[digit+j] - CHARCODE_ZERO);
+		}
 		
-		if (firstRecord[value] == NULL) {
-			firstRecord[value] = cursor;
-		}
-		else
-		{
-			lastRecord[value]->next = cursor;
-		}
-
+		lastRecord[value]->next = cursor;
 		lastRecord[value] = cursor;
-		count[value]++;
-
 		cursor = cursor->next;
 	}
 	
-	//リストの連結
-	record* newbin = firstRecord[0];
-	recordCount = count[0];
-	count[0] = 0;
-	firstRecord[0] = NULL;
-	lastRecord[0]->next = NULL;
+	return connect();
+}
 
-	if (flagCutoff)
-	{
-		for (int i = 1; i < 10000; i++)
-		{
-			if (firstRecord[i] == NULL) continue;
-
-			if (recordCount < requireCount) {
-				lastRecord[i-1]->next = firstRecord[i];
-				recordCount += count[i];
-			}
-
-			count[i] = 0;
-			firstRecord[i] = NULL;
-			lastRecord[i]->next = NULL;
-		}
-	}
-	else
-	{
-		for (int i = 1; i < 10000; i++)
-		{
-			if (firstRecord[i] == NULL) continue;
-			
-			lastRecord[i-1]->next = firstRecord[i];
-			recordCount += count[i];
-
-			count[i] = 0;
-			firstRecord[i] = NULL;
-			lastRecord[i]->next = NULL;
-		}
-	}
+record *connect()
+{
+	record* newbin = (record *)calloc(1, sizeof(record));
+	record* cursor = newbin;
+	int recordCount = 0;
 	
-	return newbin;
+	for (int i = 0; i < MEMORY_ALLOCATE_SIZE; i++)
+	{
+		if (firstRecord[i]->next != NULL && recordCount < requireCount) {
+			cursor->next = firstRecord[i]->next;
+			cursor = lastRecord[i];
+			recordCount += count[i];
+		}
+		
+		lastRecord[i] = firstRecord[i];
+		firstRecord[i]->next = NULL;
+		count[i] = 0;
+	}
+	cursor->next = NULL;
+	
+	return newbin->next;
+}
+
+void print()
+{
+	record *cursor = bin;
+	while (cursor != NULL) {
+		
+		char *ptr = cursor->ptr;
+		
+		while (ptr[0] != CHARCODE_NEWLINE) {
+			printf("%c", ptr[0]);
+			ptr++;
+		}
+		printf("\n");
+		
+		cursor = cursor->next;
+	}
 }
