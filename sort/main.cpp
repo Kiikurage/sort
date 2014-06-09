@@ -21,6 +21,25 @@
 #define UNIT_DIGIT_SIZE      4
 #define MEMORY_ALLOCATE_SIZE 10000
 
+//#define __DEBUG__
+
+#ifdef __DEBUG__
+long logtime = 0;
+void log()
+{
+	logtime = clock();
+}
+void log(char *mes)
+{
+	long now = clock();
+	printf("%8ldms >> %s\n", (now - logtime)*1000/CLOCKS_PER_SEC, mes);
+	logtime = now;
+}
+#define LOG(mes) log(mes)
+#else
+#define LOG(mes)
+#endif
+
 typedef struct _record {
 	_record *next;
 	char *ptr;
@@ -50,7 +69,6 @@ int main(int argc, const char *argv[])
 	lastRecord = (record **)malloc(MEMORY_ALLOCATE_SIZE * sizeof(record *));
 	count = (int *)calloc(MEMORY_ALLOCATE_SIZE, sizeof(int));
 	
-	
 	for (int i = 0; i < MEMORY_ALLOCATE_SIZE; i++)
 	{
 		firstRecord[i] = (record *)calloc(1, sizeof(record));
@@ -58,10 +76,10 @@ int main(int argc, const char *argv[])
 	}
 	
 	//最上位の桁で基数ソート
-	int value;
+	LOG();
 	for (int i = 0; i < fileSize; i += LINE_LENGTH)
 	{
-		value = 0;
+		int value = 0;
 		for (int j = 0; j < UNIT_DIGIT_SIZE; j++) {
 			value *= 10;
 			value += (addr[i+j] - CHARCODE_ZERO);
@@ -74,6 +92,7 @@ int main(int argc, const char *argv[])
 		lastRecord[value] = r;
 		count[value]++;
 	}
+	LOG("ソート");
 	
 	bin = connect();
 	
@@ -97,12 +116,13 @@ int main(int argc, const char *argv[])
 
 record *sort(int digit)
 {
-	record* cursor = bin;
-	int value;
+	LOG();
 	
+	record* cursor = bin;
+
 	while (cursor != NULL)
 	{
-		value = 0;
+		int value = 0;
 		for (int j = 0; j < UNIT_DIGIT_SIZE; j++) {
 			value *= 10;
 			value += (cursor->ptr[digit+j] - CHARCODE_ZERO);
@@ -110,17 +130,21 @@ record *sort(int digit)
 		
 		lastRecord[value]->next = cursor;
 		lastRecord[value] = cursor;
+		
 		cursor = cursor->next;
 	}
 	
+	LOG("ソート");
 	return connect();
 }
 
 record *connect()
 {
+	LOG();
+	
 	record* newbin = (record *)calloc(1, sizeof(record));
 	record* cursor = newbin;
-	int recordCount = 0;
+	recordCount = 0;
 	
 	for (int i = 0; i < MEMORY_ALLOCATE_SIZE; i++)
 	{
@@ -136,6 +160,7 @@ record *connect()
 	}
 	cursor->next = NULL;
 	
+	LOG("結合");
 	return newbin->next;
 }
 
