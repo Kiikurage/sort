@@ -43,13 +43,11 @@ typedef struct _record {
 	_record *next;
 } record;
 
-typedef struct {
-	_record *list;
-	_record *last;
-	int count;
-} SortResult;
+record *res_list;
+record *res_last;
+int res_count;
 
-inline SortResult sort(record *list, const int d, const int requireCount);
+inline void sort(record *list, const int d, const int requireCount);
 
 void print(record *list, int requireCount);
 
@@ -57,7 +55,7 @@ int main(int argc, const char *argv[])
 {
 	int fileSize, pageSize, mmapSize;
 	char *addr;
-
+	
 	fileSize = (int)lseek(0, 0, SEEK_END);
 	pageSize = getpagesize();
 	mmapSize = (fileSize + (pageSize - 1)) / pageSize * pageSize;
@@ -77,12 +75,12 @@ int main(int argc, const char *argv[])
 	int index;
 	
 	LOG("メモリ確保完了");
-
+	
 	for (int i = 0; i < fileSize; i += 21)
 	{
 		item = (record *)malloc(sizeof(record));
 		item->value = addr + i;
-
+		
 		index = 0;
 		for (int j = 0; j < UNIT_DIGIT; j++)
 		{
@@ -94,7 +92,7 @@ int main(int argc, const char *argv[])
 		cursor[index] = item;
 	}
 	LOG("読み込み完了");
-
+	
 	//連結
 	record *listAll = (record *)malloc(sizeof(record));
 	record *cursor2 = listAll;
@@ -103,15 +101,16 @@ int main(int argc, const char *argv[])
 	{
 		if (!list[i]->next) continue;
 		
-		SortResult res = sort(list[i], UNIT_DIGIT, req);
-		cursor2->next = res.list->next;
-		cursor2 = res.last;
-		req -= res.count;
-
+		sort(list[i], UNIT_DIGIT, req);
+		
+		cursor2->next = res_list->next;
+		cursor2 = res_last;
+		req -= res_count;
+		
 		if (req <= 0) break;
 	}
 	cursor2->next = NULL;
-
+	
 	LOG("終了");
 	return 0;
 }
@@ -123,12 +122,12 @@ int main(int argc, const char *argv[])
  *
  * 戻り値: SortResult
  */
-inline SortResult sort(record *list, const int digit, const int requireCount) {
-
+inline void sort(record *list, const int digit, const int requireCount) {
+	
 	record **sublist = (record **)malloc(sizeof(record *) * ALLOCATE_SIZE);
 	record **cursor = (record **)malloc(sizeof(record *) * ALLOCATE_SIZE);
 	int *count = (int *)calloc(ALLOCATE_SIZE, sizeof(int));
-
+	
 	for (int i = 0; i < ALLOCATE_SIZE; i++)
 	{
 		sublist[i] = (record *)malloc(sizeof(record));
@@ -142,7 +141,7 @@ inline SortResult sort(record *list, const int digit, const int requireCount) {
 	while ((item = item->next))
 	{
 		if (item == item->next) throw "error";
-
+		
 		index = 0;
 		for (int j = 0; j < UNIT_DIGIT; j++)
 		{
@@ -153,11 +152,10 @@ inline SortResult sort(record *list, const int digit, const int requireCount) {
 		cursor[index] = item;
 		count[index]++;
 	}
-
+	
 	record *sublistAll = (record *)malloc(sizeof(record));
 	record *cursor2 = sublistAll;
 	int req = requireCount;
-	SortResult res;
 	
 	for (int i = 0; i < ALLOCATE_SIZE; i++)
 	{
@@ -166,11 +164,12 @@ inline SortResult sort(record *list, const int digit, const int requireCount) {
 		if (digit+UNIT_DIGIT < 20 && count[i] > 1)
 		{
 			cursor[i]->next = NULL;
-			res = sort(sublist[i], digit+UNIT_DIGIT, req);
-			if (res.list->next == NULL) continue;
-			cursor2->next = res.list->next;
-			cursor2 = res.last;
-			req -= res.count;
+			
+			sort(sublist[i], digit+UNIT_DIGIT, req);
+			
+			cursor2->next = res_list->next;
+			cursor2 = res_last;
+			req -= res_count;
 			if (req <= 0) break;
 		}
 		else
@@ -183,7 +182,11 @@ inline SortResult sort(record *list, const int digit, const int requireCount) {
 	}
 	cursor2->next = NULL;
 	
-	return {sublistAll, cursor2, requireCount-req};
+	res_list = sublistAll;
+	res_last = cursor2;
+	res_count = requireCount-req;
+
+	return;
 }
 
 void print(record *list, int requireCount)
