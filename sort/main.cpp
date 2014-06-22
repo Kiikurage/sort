@@ -13,45 +13,45 @@
 #include <sys/types.h>
 #include <sys/mman.h>
 
-#define DIGIT_NUMBER         20
-#define NEWLINECODE_SIZE     1
-#define LINE_LENGTH          (DIGIT_NUMBER+NEWLINECODE_SIZE)
-#define CHARCODE_ZERO        48
-#define CHARCODE_NEWLINE     10
-#define UNIT_DIGIT_SIZE      4
-#define MEMORY_ALLOCATE_SIZE 10000
+#define LINE_LENGTH 21
+#define CHARCODE_ZERO 48
+#define ALLOCATE_SIZE 10
+#define UNIT_DIGIT 1
 
-//#define __DEBUG__
+#define __DEBUG__
+//#define __PRINT_ALL__
 
 #ifdef __DEBUG__
 long logtime = 0;
-void log()
+void _LOG()
 {
 	logtime = clock();
 }
-void log(char *mes)
+void _LOG(const char *mes)
 {
 	long now = clock();
 	printf("%8ldms >> %s\n", (now - logtime)*1000/CLOCKS_PER_SEC, mes);
 	logtime = now;
 }
-#define LOG(mes) log(mes)
+#define LOG(mes) _LOG(mes)
 #else
 #define LOG(mes)
 #endif
 
 typedef struct _record {
+	char *value;
 	_record *next;
-	char *ptr;
 } record;
 
-record *sort(int digit);
-record *connect();
-void print();
+typedef struct {
+	_record *list;
+	_record *last;
+	int count;
+} SortResult;
 
-record **firstRecord, **lastRecord;
-record *bin;
-int *count, recordCount, requireCount;
+inline SortResult sort(record *list, const int d, const int requireCount);
+
+void print(record *list, int requireCount);
 
 int main(int argc, const char *argv[])
 {
@@ -63,120 +63,146 @@ int main(int argc, const char *argv[])
 	mmapSize = (fileSize + (pageSize - 1)) / pageSize * pageSize;
 	addr = (char *)mmap(0, mmapSize, PROT_READ, MAP_PRIVATE, 0, 0);
 	
-	requireCount = fileSize / 100 * atoi(argv[1]) / LINE_LENGTH;
-
-	firstRecord = (record **)malloc(MEMORY_ALLOCATE_SIZE * sizeof(record *));
-	lastRecord = (record **)malloc(MEMORY_ALLOCATE_SIZE * sizeof(record *));
-	count = (int *)calloc(MEMORY_ALLOCATE_SIZE, sizeof(int));
+	int requireCount = fileSize / 100 * atoi(argv[1]) / 21;
 	
-	for (int i = 0; i < MEMORY_ALLOCATE_SIZE; i++)
+	record **list = (record **)malloc(sizeof(record *) * ALLOCATE_SIZE);
+	record **cursor = (record **)malloc(sizeof(record *) * ALLOCATE_SIZE);
+	for (int i = 0; i < ALLOCATE_SIZE; i++)
 	{
-		firstRecord[i] = (record *)calloc(1, sizeof(record));
-		lastRecord[i] = firstRecord[i];
+		list[i] = (record *)malloc(sizeof(record));
+		list[i]->next = NULL;
+		cursor[i] = list[i];
 	}
+	record *item;
+	int index;
 	
-	//最上位の桁で基数ソート
-	LOG();
-	for (int i = 0; i < fileSize; i += LINE_LENGTH)
+	LOG("メモリ確保完了");
+
+	for (int i = 0; i < fileSize; i += 21)
 	{
-		int value = 0;
-		for (int j = 0; j < UNIT_DIGIT_SIZE; j++) {
-			value *= 10;
-			value += (addr[i+j] - CHARCODE_ZERO);
+		item = (record *)malloc(sizeof(record));
+		item->value = addr + i;
+
+		index = 0;
+		for (int j = 0; j < UNIT_DIGIT; j++)
+		{
+			index *= 10;
+			index += *(item->value+j)-CHARCODE_ZERO;
 		}
-
-		record* r = (record *)malloc(sizeof(record));
-		r->ptr = addr + i;
 		
-		lastRecord[value]->next = r;
-		lastRecord[value] = r;
-		count[value]++;
+		cursor[index]->next = item;
+		cursor[index] = item;
 	}
-	LOG("ソート");
-	
-	bin = connect();
-	
-	//下から順に基数ソート
-	for (int digit = DIGIT_NUMBER - UNIT_DIGIT_SIZE; digit >= 0; digit -= UNIT_DIGIT_SIZE)
-		bin = sort(digit);
-	
-	long t_end = clock()*1000/CLOCKS_PER_SEC;
-	
-//	print();
-	
-	printf("\nfinish!\n");
-	printf("time             : %ld(ms)\n", t_end);
+	LOG("読み込み完了");
 
-	free(firstRecord);
-	free(lastRecord);
-	free(count);
-	
+	//連結
+	record *listAll = (record *)malloc(sizeof(record));
+	record *cursor2 = listAll;
+	int req = requireCount;
+	for (int i = 0; i < ALLOCATE_SIZE; i++)
+	{
+		if (!list[i]->next) continue;
+		
+		SortResult res = sort(list[i], UNIT_DIGIT, req);
+		cursor2->next = res.list->next;
+		cursor2 = res.last;
+		req -= res.count;
+
+		if (req <= 0) break;
+	}
+	cursor2->next = NULL;
+
+	LOG("終了");
 	return 0;
 }
 
-record *sort(int digit)
-{
-	LOG();
-	
-	record* cursor = bin;
+/*
+ * list: リストへのポインタ
+ * digit: 評価の対象とする桁数
+ * count: 必要な要素数
+ *
+ * 戻り値: SortResult
+ */
+inline SortResult sort(record *list, const int digit, const int requireCount) {
 
-	while (cursor != NULL)
+	record **sublist = (record **)malloc(sizeof(record *) * ALLOCATE_SIZE);
+	record **cursor = (record **)malloc(sizeof(record *) * ALLOCATE_SIZE);
+	int *count = (int *)calloc(ALLOCATE_SIZE, sizeof(int));
+
+	for (int i = 0; i < ALLOCATE_SIZE; i++)
 	{
-		int value = 0;
-		for (int j = 0; j < UNIT_DIGIT_SIZE; j++) {
-			value *= 10;
-			value += (cursor->ptr[digit+j] - CHARCODE_ZERO);
-		}
-		
-		lastRecord[value]->next = cursor;
-		lastRecord[value] = cursor;
-		
-		cursor = cursor->next;
+		sublist[i] = (record *)malloc(sizeof(record));
+		sublist[i]->next = NULL;
+		cursor[i] = sublist[i];
 	}
 	
-	LOG("ソート");
-	return connect();
-}
-
-record *connect()
-{
-	LOG();
+	record *item = list;
+	int index;
 	
-	record* newbin = (record *)calloc(1, sizeof(record));
-	record* cursor = newbin;
-	recordCount = 0;
-	
-	for (int i = 0; i < MEMORY_ALLOCATE_SIZE; i++)
+	while ((item = item->next))
 	{
-		if (firstRecord[i]->next != NULL && recordCount < requireCount) {
-			cursor->next = firstRecord[i]->next;
-			cursor = lastRecord[i];
-			recordCount += count[i];
+		if (item == item->next) throw "error";
+
+		index = 0;
+		for (int j = 0; j < UNIT_DIGIT; j++)
+		{
+			index *= 10;
+			index += *(item->value+digit+j)-CHARCODE_ZERO;
 		}
-		
-		lastRecord[i] = firstRecord[i];
-		firstRecord[i]->next = NULL;
-		count[i] = 0;
+		cursor[index]->next = item;
+		cursor[index] = item;
+		count[index]++;
 	}
-	cursor->next = NULL;
+
+	record *sublistAll = (record *)malloc(sizeof(record));
+	record *cursor2 = sublistAll;
+	int req = requireCount;
+	SortResult res;
 	
-	LOG("結合");
-	return newbin->next;
+	for (int i = 0; i < ALLOCATE_SIZE; i++)
+	{
+		if (count[i] == 0) continue;
+		
+		if (digit+UNIT_DIGIT < 20 && count[i] > 1)
+		{
+			cursor[i]->next = NULL;
+			res = sort(sublist[i], digit+UNIT_DIGIT, req);
+			if (res.list->next == NULL) continue;
+			cursor2->next = res.list->next;
+			cursor2 = res.last;
+			req -= res.count;
+			if (req <= 0) break;
+		}
+		else
+		{
+			cursor2->next = sublist[i]->next;
+			cursor2 = cursor[i];
+			req -= count[i];
+			if (req <= 0) break;
+		}
+	}
+	cursor2->next = NULL;
+	
+	return {sublistAll, cursor2, requireCount-req};
 }
 
-void print()
+void print(record *list, int requireCount)
 {
-	record *cursor = bin;
-	while (cursor != NULL) {
-		
-		char *ptr = cursor->ptr;
-		
-		while (ptr[0] != CHARCODE_NEWLINE) {
-			printf("%c", ptr[0]);
-			ptr++;
+	int i = 0;
+	record *cursor = list;
+	while ((cursor = cursor->next))
+	{
+#ifdef __PRINT_ALL__
+		int s = 0;
+		while (s < 20)
+		{
+			printf("%c", (*(cursor->value + s)));
+			s++;
 		}
 		printf("\n");
-		
-		cursor = cursor->next;
+#endif
+		i++;
+		if (i >= requireCount) break;
 	}
+	printf("%d個\n", i);
 }
